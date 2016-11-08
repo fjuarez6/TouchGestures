@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -54,9 +55,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
         singleTaps++;
+        singleTapTextView.setText(String.valueOf(singleTaps));
         // Let's append to our gesture log
         gesturesLogTextView.append("\nonSingleTapConfirmed touch event");
-        singleTapTextView.setText(String.valueOf(singleTaps));
         return true;
     }
 
@@ -114,5 +115,16 @@ public class MainActivity extends AppCompatActivity
                 velocityX + ", velocityY is " + velocityY);
         flingTextView.setText(String.valueOf(flings));
         return true;
+    }
+
+    public void clearAll(View view)
+    {
+        singleTaps = 0;
+        gesturesLogTextView.setText("");
+        singleTapTextView.setText(String.valueOf(singleTaps));
+        doubleTapTextView.setText(R.string.zero);
+        longPressTextView.setText(R.string.zero);
+        scrollTextView.setText(R.string.zero);
+        flingTextView.setText(R.string.zero);
     }
 }
